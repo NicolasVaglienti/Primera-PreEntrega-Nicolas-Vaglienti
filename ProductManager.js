@@ -1,4 +1,4 @@
-const fs = require("fs");
+import fs from "fs";
 
 const writeFile = async (path, contents) =>
   await fs.promises.writeFile(path, JSON.stringify(contents, null, 2));
@@ -11,9 +11,10 @@ const readFile = async (path) => {
 class ProductManager {
   constructor(filePath) {
     this.path = filePath;
-    if (fs.existsSync(filePath)) {
-      this.products = JSON.parse(fs.readFileSync(filePath));
-    } else {
+    try {
+      this.products = fs.readFileSync(filePath);
+      this.products = JSON.parse(this.products);
+    } catch (err) {
       this.products = [];
     }
   }
@@ -53,12 +54,11 @@ class ProductManager {
     }
   }
 
-  async getProducts() {
-    try {
-      return await readFile(this.path);
-    } catch (error) {
-      console.log("Error linea 57", error);
+  getProducts({ limit }) {
+    if (limit) {
+      this.products = this.products.slice(0, Number(limit));
     }
+    return this.products;
   }
 
   async updateProduct(product) {
@@ -98,34 +98,34 @@ class ProductManager {
   }
 }
 
-let minm = 1;
-let maxm = 100;
+// let minm = 1;
+// let maxm = 100;
 
-let productManager = new ProductManager("./Products.json");
+// for (let i = 0; i < 5; i++) {
+//   productManager.addProduct(
+//     "Product",
+//     "decription",
+//     100,
+//     "thumbnail",
+//     Math.floor(Math.random() * (maxm - minm + 1)) + minm,
+//     15
+//   );
+// }
 
-for (let i = 0; i < 5; i++) {
-  productManager.addProduct(
-    "Product",
-    "decription",
-    100,
-    "thumbnail",
-    Math.floor(Math.random() * (maxm - minm + 1)) + minm,
-    15
-  );
-}
-
-productManager.updateProduct({
-  title: "Product",
-  description: "nueva asdasasddescripcion",
-  price: 100,
-  thumbnail: "thumbnail",
-  code: 6,
-  stock: 15,
-  id: 3,
-});
+// productManager.updateProduct({
+//   title: "Product",
+//   description: "nueva asdasasddescripcion",
+//   price: 100,
+//   thumbnail: "thumbnail",
+//   code: 6,
+//   stock: 15,
+//   id: 3,
+// });
 
 // Descomentar los logs si es necesario.
 
 // console.log(productManager.getProducts());
 // console.log(productManager.getProductsById(1));
-productManager.deleteProduct(2);
+// productManager.deleteProduct(2);
+
+export default new ProductManager("./Products.json");
