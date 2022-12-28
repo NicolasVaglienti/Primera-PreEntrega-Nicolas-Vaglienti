@@ -1,6 +1,5 @@
 import fs from "fs";
 import { writeFile, readFile } from "./helpers.js";
-import ProductManager from "./ProductManager.js";
 
 const update = (list, item) =>
   list.map((i) => {
