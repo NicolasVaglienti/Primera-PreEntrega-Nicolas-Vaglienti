@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NicolasVaglienti/desafio1-Nicolas-Vaglienti.git"
+    "url": "git+https://github.com/NicolasVaglienti/Primera-PreEntrega-Nicolas-Vaglienti.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NicolasVaglienti/desafio1-Nicolas-Vaglienti/issues"
+    "url": "https://github.com/NicolasVaglienti/Primera-PreEntrega-Nicolas-Vaglienti/issues"
   },
-  "homepage": "https://github.com/NicolasVaglienti/desafio1-Nicolas-Vaglienti#readme",
+  "homepage": "https://github.com/NicolasVaglienti/Primera-PreEntrega-Nicolas-Vaglienti#readme",
   "dependencies": {
     "express": "^4.18.2",
     "nodemon": "^2.0.20"
